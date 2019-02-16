@@ -68,6 +68,14 @@ program
   })
 
 program
+  .command('monitoraccount')
+  .description('monitors an account')
+  .action(async (address) => {
+    await client().monitorAccount(address)
+    console.log(`Monitoring new account: ${address}`)
+  })
+
+program
   .command('getbalance <account>')
   .description('returns the balance of an account')
   .action(async (account) => {
