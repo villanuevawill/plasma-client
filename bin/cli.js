@@ -116,6 +116,16 @@ program
   })
 
 program
+  .command('sendmalicious <from> <to> <token> <amount>')
+  .description('maliciously sends tokens from one account to another')
+  .action(async (from, to, token, amount) => {
+    from = await parseAccount(from)
+    to = await parseAccount(to)
+    const receipt = await client().sendMaliciousTransaction(from, to, token, amount)
+    console.log(`Transaction receipt: ${receipt}`)
+  })
+
+program
   .command('exit <account> <token> <amount>')
   .description('starts a withdrawal for an account')
   .action(async (account, token, amount) => {
