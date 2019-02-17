@@ -46,16 +46,16 @@ const getSectionTitle = (title) => {
 }
 
 (async () => {
-  const latest = await latestVersion(pkg.name)
-  if (pkg.version !== latest) {
-    console.log(colors.red('ERROR: ') + 'Your plasma-client is out of date.')
-    console.log('Please update to the latest version by running:')
-    console.log(colors.green('npm install -g --upgrade plasma-client'))
-    console.log()
-    console.log(`You might also want to reset your database (this won't delete your accounts):`)
-    console.log(colors.green('plasma-cli killdb'))
-    return
-  }
+  // const latest = await latestVersion(pkg.name)
+  // if (pkg.version !== latest) {
+  //   console.log(colors.red('ERROR: ') + 'Your plasma-client is out of date.')
+  //   console.log('Please update to the latest version by running:')
+  //   console.log(colors.green('npm install -g --upgrade plasma-client'))
+  //   console.log()
+  //   console.log(`You might also want to reset your database (this won't delete your accounts):`)
+  //   console.log(colors.green('plasma-cli killdb'))
+  //   return
+  // }
 
   await node.start()
   console.log('Plasma Client v' + pkg.version + ' 🎉 🎉 🎉 ')
