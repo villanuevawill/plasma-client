@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plasmanode
+  labels:
+    app: plasmanode
+  namespace: watchtower
+spec:
+  selector:
+    matchLabels:
+      app: plasmanode
+  template:
+    metadata:
+      labels:
+        app: plasmanode
+    spec:
+      containers:
+      - name: plasmanode
+        image: consensysbounties/plasma-client:12
+        ports:
+        - containerPort: 9898
+          protocol: TCP
