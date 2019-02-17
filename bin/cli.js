@@ -126,6 +126,16 @@ program
   })
 
 program
+  .command('getmalicioustransactions <address>')
+  .description('get malicious transactions for an address')
+  .action(async (address) => {
+    address = await parseAccount(address)
+    const transactions = await client().getMaliciousTransactions(address)
+    return transactions
+  })
+
+
+program
   .command('exit <account> <token> <amount>')
   .description('starts a withdrawal for an account')
   .action(async (account, token, amount) => {
