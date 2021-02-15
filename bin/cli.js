@@ -68,6 +68,14 @@ program
   })
 
 program
+  .command('monitoraccount')
+  .description('monitors an account')
+  .action(async (address) => {
+    await client().monitorAccount(address)
+    console.log(`Monitoring new account: ${address}`)
+  })
+
+program
   .command('getbalance <account>')
   .description('returns the balance of an account')
   .action(async (account) => {
@@ -106,6 +114,26 @@ program
     const receipt = await client().sendTransaction(from, to, token, amount)
     console.log(`Transaction receipt: ${receipt}`)
   })
+
+program
+  .command('sendmalicious <from> <to> <token> <amount>')
+  .description('maliciously sends tokens from one account to another')
+  .action(async (from, to, token, amount) => {
+    from = await parseAccount(from)
+    to = await parseAccount(to)
+    const receipt = await client().sendMaliciousTransaction(from, to, token, amount)
+    console.log(`Transaction receipt: ${receipt}`)
+  })
+
+program
+  .command('getmalicioustransactions <address>')
+  .description('get malicious transactions for an address')
+  .action(async (address) => {
+    address = await parseAccount(address)
+    const transactions = await client().getMaliciousTransactions(address)
+    return transactions
+  })
+
 
 program
   .command('exit <account> <token> <amount>')
